@@ -31,9 +31,7 @@
       }
     ]
   },
-  "include": [
-    "src/**/*.ts"
-  ],
+  "include": [ "src/**/*.ts", "clsx.ts"  ],
   "exclude": [
     "**/node_modules",
     "**/.*/",

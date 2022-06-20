@@ -1,10 +1,25 @@
 {
   "name": "tiny-clsx",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "unpkg": "dist/clsx.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "typings": "dist/index.d.ts",
+  "files": ["dist", "src"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx tsc -b",
+    "pretest": "npm run build",
+    "tape": "tape -r esm lib/test.js | tap-spec",
+    "dist": "tape -r esm test/test.js | tap-spec",
+    "compile": "npx rollup -c rollup.config.js"
   },
   "keywords": [],
   "author": "sam bacha",
@@ -15,8 +30,16 @@
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
     "@typescript/analyze-trace": "^0.9.0",
+    "downlevel-dts": "^0.10.0",
+    "esbuild": "^0.14.46",
     "eslint": "^8.18.0",
+    "esm": "^3.2.25",
     "process-tracing": "^1.0.2",
+    "rollup": "^2.75.6",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-esbuild": "^4.9.1",
+    "tap-spec": "^5.0.0",
+    "tape": "^5.5.3",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4",
     "typescript-eslint-language-service": "^5.0.0"
